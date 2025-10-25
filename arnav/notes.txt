@@ -1,0 +1,24 @@
+7/14/25 - setting up genome org github repo
+
+next to do:
+pip install -e 
+
+Make sure you are in the genome_sim mamba environemt, which helps you organize your dependencies (what you install with mamba install)
+If you try to run something and get an error, try this:
+mamba install -c conda-forge PACKAGENAME
+Or in the genome_sim environment, use pip install PACKAGENAME
+
+Your script is here:
+examples/arnav
+You can run cells in the notebook in vscode
+
+You can feed the output files to chatgpt and ask it how to process the positions data to calculate metrics like radius of gyration, contact probability scaling, contact maps, etc.
+
+Use OVITO to analyze the data:
+
+Open the .data file generated in ovito
+You’ll need to change the paths to the locations of the trajectories on your filesystem
+
+Trajectory means group of frames (each .h5 file is a frame)
+
+After opening .data file, add modification and enter load trajectory and put in the path to the .xyz file
