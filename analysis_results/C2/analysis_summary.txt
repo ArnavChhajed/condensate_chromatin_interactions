@@ -1,0 +1,36 @@
+GENOME ORGANIZATION ANALYSIS SUMMARY
+==================================================
+
+Configuration: {'condition': 'C2', 'mode': 'condensate', 'N_CHROMATIN': 120, 'N_CONDENSATES': 10, 'DENSITY': 0.33, 'TEMPERATURE': 300.0, 'RANDOM_SEED': 42}
+Frames analyzed: 200
+Monomer counts: {'A': np.int64(40), 'B': np.int64(40), 'C': np.int64(40)}
+
+COM DISTANCES (mean ± std):
+------------------------------
+A-A     : 2.847 ± 0.647
+A-B     : 3.729 ± 0.405
+A-C     : 3.629 ± 0.378
+B-B     : 3.716 ± 0.621
+B-C     : 3.644 ± 0.341
+C-C     : 3.710 ± 0.590
+
+CONTACT FRACTIONS:
+------------------------------
+A-A     : 0.1694
+A-B     : 0.0486
+A-C     : 0.0522
+B-B     : 0.1261
+B-C     : 0.0577
+C-C     : 0.1230
+
+CLUSTERING SCORES:
+------------------------------
+Type A: 0.6177
+Type B: 0.5277
+Type C: 0.5153
+
+CONDENSATE RECRUITMENT:
+------------------------------
+Type A: 2.4823
+Type B: 2.4777
+Type C: 2.4651

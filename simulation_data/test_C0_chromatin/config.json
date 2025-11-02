@@ -1,0 +1,9 @@
+{
+  "condition": "C0",
+  "mode": "chromatin",
+  "N_CHROMATIN": 120,
+  "N_CONDENSATES": 0,
+  "DENSITY": 0.33,
+  "TEMPERATURE": 300.0,
+  "RANDOM_SEED": 42
+}
