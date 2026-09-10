@@ -1,37 +1,169 @@
-# condensate_chromatin_interactions
-This github repository contains the simulations and analysis for modeling chromatin–condensate interactions using molecular dynamics to study how attraction strengths affect clustering, spatial organization, and genome structure. Includes code for simulations, analysis (kNN, RDF, COM), and visualizations of all five test conditions.
+# Chromatin-Condensate Interactions: Molecular Dynamics Simulations
+# Chromatin–Condensate Interactions: Molecular Dynamics Simulations
 
-Chromatin is modeled as a block heteropolymer with three monomer types (A, B, C), representing different chromatin states. Condensates are treated as spherical particles that can selectively attract specific monomer types. The potential energy function includes harmonic bonds, angle bending, confinement, and type–type interaction terms that together reproduce realistic polymer behavior.
+This repository contains the molecular dynamics simulations and analysis code used to model **chromatin–condensate interactions**. The project investigates how different attraction strengths and interaction preferences affect chromatin clustering, spatial organization, and genome structure.
 
-Five test cases are included:
-C0: Baseline control (no strong preferences)
-C1: Condensate favors Type A
-C2: Chromatin self-attraction for Type A
-C3: Condensate favors Types B and C
-C4: Chromatin self-attraction for all types
+The repository includes the complete workflow for system initialization, molecular dynamics simulations, trajectory extraction, visualization, quantitative analysis, and figure generation across five test conditions.
 
-Each simulation runs for 200 time frames (1000 timesteps each), and outputs are analyzed for:
-Radial distribution functions (RDFs)
-Type–type contact fractions
-Condensate recruitment profiles
-Clustering scores using the k-nearest neighbors algorithm
+## Model Overview
 
+Chromatin is modeled as a **block heteropolymer** consisting of three monomer types:
 
-The repository is organized so anyone can reproduce the full workflow from system setup to analysis. The general order of execution is:
+* **Type A**
+* **Type B**
+* **Type C**
 
-Generate initial monomer positions using the provided scripts in the simulations_notebooks_jupyter/ directory. These define the spatial layout of chromatin monomers (types A, B, and C) and condensates inside the simulation box.
+These monomer types represent different chromatin states. Condensates are modeled as spherical particles that can selectively attract specific chromatin types.
 
-Run the molecular dynamics simulations for each condition (C0–C5) using the corresponding input files. Each run outputs a trajectory file that stores coordinates for all particles over time.
+The simulation potential includes:
 
-Extract simulation frames using the extraction utilities in the simulation_data/ folder. These scripts convert raw trajectory data into frame-by-frame coordinate files that can be used for visualization or analysis.
+* Harmonic bond interactions
+* Angular bending potentials
+* Spatial confinement
+* Type-specific chromatin–chromatin interactions
+* Type-specific chromatin–condensate interactions
 
-Visualize trajectories in OVITO by opening the extracted files and applying the ovito_processing.py script in the analysis/ directory. This script color-codes monomer types, tracks condensate movement, and helps verify that the system behaves as expected before running detailed analyses.
+Together, these interactions provide a coarse-grained representation of polymer behavior and chromatin–condensate interactions.
 
-Perform quantitative analysis using the scripts in the analysis_scripts/ folder. Each notebook corresponds to one metric—radial distributions (RDF), type–type contact fractions, condensate recruitment profiles, and clustering scores (k-nearest neighbors).
+## Simulation Conditions
 
-Aggregate and visualize results using the provided plotting utilities. The figures generated from these scripts reproduce the heatmaps, contact matrices, and clustering profiles presented in the paper.
+Five test conditions are included:
 
-By following this workflow, anyone can rebuild the full set of simulations and analyses exactly as described, from initialization through visualization to quantitative interpretation.
+| Condition | Description                                             |
+| --------- | ------------------------------------------------------- |
+| **C0**    | Baseline control with no strong interaction preferences |
+| **C1**    | Condensate preferentially attracts Type A               |
+| **C2**    | Type A chromatin has increased self-attraction          |
+| **C3**    | Condensate preferentially attracts Types B and C        |
+| **C4**    | All chromatin types have increased self-attraction      |
 
+Each simulation consists of **200 frames**, with **1,000 molecular dynamics timesteps per frame**.
 
-Collaborators/Mentors: Kaden Dimarco, Dr. Krishna Shrinivas
+## Analysis
+
+Simulation trajectories are analyzed to quantify changes in chromatin organization and condensate interactions. The primary analyses include:
+
+### Radial Distribution Functions (RDF)
+
+RDFs characterize the spatial distribution of different particle types relative to one another and quantify how interaction preferences influence spatial organization.
+
+### Type–Type Contact Fractions
+
+Contact fractions measure the frequency of interactions between different chromatin and condensate types, allowing comparison of preferential associations across simulation conditions.
+
+### Condensate Recruitment Profiles
+
+Recruitment profiles quantify the spatial enrichment of each chromatin type around condensates and identify which chromatin states are preferentially recruited.
+
+### k-Nearest Neighbors (kNN) Clustering
+
+kNN-based clustering scores quantify the degree to which chromatin monomers of the same type cluster together within the simulation box.
+
+## Repository Workflow
+
+The repository is organized to allow the full simulation and analysis pipeline to be reproduced from initial system setup through quantitative analysis.
+
+### 1. Generate Initial Configurations
+
+Use the scripts and notebooks in:
+
+```text
+simulations_notebooks_jupyter/
+```
+
+These scripts generate the initial spatial arrangement of chromatin monomers and condensates inside the simulation box, including the three chromatin types A, B, and C.
+
+### 2. Run Molecular Dynamics Simulations
+
+Run the molecular dynamics simulations for each condition (**C0–C4**) using the corresponding simulation input files.
+
+Each simulation produces a trajectory containing the coordinates of all particles over time.
+
+### 3. Extract Simulation Frames
+
+Use the utilities in:
+
+```text
+simulation_data/
+```
+
+to extract individual simulation frames from the raw trajectory files.
+
+The extracted coordinate files are used for visualization and downstream analysis.
+
+### 4. Visualize Trajectories
+
+Simulation trajectories can be inspected using **OVITO**.
+
+The processing script in:
+
+```text
+analysis/ovito_processing.py
+```
+
+can be applied to the extracted trajectory files to:
+
+* Color-code the different chromatin monomer types
+* Track condensate movement
+* Visualize chromatin organization
+* Verify that simulations behave as expected
+
+Visual inspection provides an initial check of the simulation before performing quantitative analyses.
+
+### 5. Perform Quantitative Analysis
+
+The analysis notebooks and scripts are located in:
+
+```text
+analysis_scripts/
+```
+
+Each notebook focuses on a specific quantitative metric, including:
+
+* Radial distribution functions (RDFs)
+* Type–type contact fractions
+* Condensate recruitment profiles
+* k-nearest neighbors (kNN) clustering scores
+
+These analyses are applied across the five simulation conditions to compare how different interaction parameters influence chromatin organization.
+
+### 6. Generate Figures and Aggregate Results
+
+The resulting data can be aggregated and visualized using the provided plotting utilities.
+
+These scripts generate the primary visualizations used to compare simulation conditions, including:
+
+* Heatmaps
+* Contact matrices
+* Radial distribution plots
+* Condensate recruitment profiles
+* Clustering profiles
+
+The resulting figures reproduce the analyses presented in the associated research work.
+
+## Reproducibility
+
+The repository is designed to reproduce the complete simulation and analysis workflow:
+
+```text
+Initial Configuration
+        ↓
+Molecular Dynamics Simulation
+        ↓
+Trajectory Extraction
+        ↓
+OVITO Visualization
+        ↓
+Quantitative Analysis
+        ↓
+Data Aggregation
+        ↓
+Figure Generation
+```
+
+Following this workflow allows the simulations and analyses to be reconstructed from system initialization through visualization and quantitative interpretation.
+
+## Collaborators and Mentors
+
+* **Kaden Dimarco**
+* **Dr. Krishna Shrinivas**
